@@ -1,3 +1,112 @@
-.iframe-intro-video {
-  position: fixed;
+@mixin responsive-media-size {
+  width: wrap-content-width($max-page-width);
+  height: wrap-content-width($max-page-width) / 2;
+  @include break($max-page-width) {
+    width: wrap-content-width($break-one);
+    height: wrap-content-width($break-one) / 2;
+  }
+  @include break($break-one) {
+    width: wrap-content-width($break-two);
+    height: wrap-content-width($break-two) / 2;
+  }
+  @include break($break-two) {
+    width: wrap-content-width($break-three);
+    height: wrap-content-width($break-three) / 2;
+  }
+}
+
+.intro-video {
+  @include responsive-media-size;
+  margin: $spacing-unit 0;
+}
+
+.episodes-page {
+  display: none;
+}
+
+.episodes-page.show {
+  display: block;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  article {
+    padding: $spacing-unit 0px;
+    display: grid;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    grid-template-columns: 65% 35%;
+    grid-template-rows: auto auto auto;
+    header {
+      grid-column: 1/3;
+      grid-row: 1/2;
+      align-self: center;
+      * {
+        margin: 0px;
+      }
+      margin: 8px 0px;
+    }
+    .post-content {
+      grid-column: 1/3;
+      grid-row: 2/3;
+    }
+    .responsive-video-wrap {
+      width: 100%;
+      height: 0;
+      padding-top: calc(300 / 533.328 * 100%);
+      position: relative;
+    }
+    .post-video {
+      grid-column: 1/2;
+      grid-row: 3/4;
+      place-self: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .playlist {
+      grid-column: 2/3;
+      grid-row: 3/4;
+      place-self: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.post-list-nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  position: relative;
+  .nav-background {
+    width: 200vw;
+    height: 100%;
+    left: -100%;
+    background-color: black;
+    position: absolute;
+  }
+}
+
+.post-list-nav-button {
+  color: $brand-color;
+  cursor: pointer;
+  margin: 0px;
+  margin-right: 16px;
+  z-index: 2;
+  &:hover {
+    color: white;
+    text-decoration: underline;
+  }
+}
+
+.post-list-nav-button.disabled {
+  cursor: inherit;
+  color: white;
+  text-decoration: none !important;
 }

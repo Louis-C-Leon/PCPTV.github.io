@@ -1,0 +1,45 @@
+  {% if site.posts.size > 0 %}
+    <script type="text/javascript" src="/assets/lazy_load.js"></script>
+    {% assign full_pages = site.posts.size | divided_by: site.posts_per_page %}
+    {% assign remaining_posts = site.posts.size | modulo: site.posts_per_page %}
+    {% if remaining_posts > 0 %}
+      {% assign num_pages = full_pages | plus: 1 %}
+    {% else %}
+      {% assign num_pages = full_pages %}
+    {% endif %}
+    <h2 class="post-list-heading" id="episodes">
+      {{ page.list_title | default: "Posts" }}
+    </h2>
+    <div class="post-list">
+      {% if num_pages > 1 %}
+      <ul class="post-list-nav">
+        <li>
+            <div class="post-list-nav-button" id="prev-page">Prev</div>
+        </li>
+        {%- for page in (1..num_pages) -%}
+          <li>
+            <div class="post-list-nav-button" id="page-{{ page }}">
+              {{ page }}
+            </div>
+          </li>
+        {% endfor %}
+        <li>
+          <div class="post-list-nav-button" id="next-page">
+            Next
+          </div>
+        </li>
+      </ul>
+      {% endif %}
+      {% for page in (1..num_pages) %}
+      <div class="episodes-page" id="page-{{page}}">
+        {% assign low_bound = page | minus: 1 | times: site.posts_per_page %}
+        {% assign max_size = site.posts.size | minus: low_bound | at_most: site.posts_per_page %}
+        {% assign high_bound = low_bound | plus: max_size | minus: 1 %}
+        {% for post in (low_bound..high_bound) %} 
+          {% assign curr_post = site.posts[post] %}
+          {%  include post.html %}
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}

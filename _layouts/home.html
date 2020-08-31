@@ -4,39 +4,21 @@ layout: default
 
 <div class="home">
   {%- if page.title -%}
-  <h1 class="page-heading">{{ page.title }}</h1>
+    <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
   {{ content }}
-  {%- if page.intro_video_url -%} 
-    {%- assign video_id = page.intro_video_url | split: '/' | last -%} 
+  {%- if page.text -%}
+    <p>{{ page.text }}</p>
+  {%- endif -%}
+  {%- if page.video_url -%} 
+    {%- assign video_id = page.video_url | split: '/' | last -%} 
     {%- assign iframe_src = "https://player.vimeo.com/video/" | append: video_id -%}
      <iframe 
       src={{ iframe_src }}
-      width="640"
-      height="360"
       frameborder="0"
-      allow="autoplay; fullscreen"
+      allow="fullscreen"
       allowfullscreen
-      class="iframe-intro-video"
+      class="intro-video"
     ></iframe>
   {%- endif -%} 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%} 
-         {{ post.excerpt }} 
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
-  {%- endif -%}
 </div>
