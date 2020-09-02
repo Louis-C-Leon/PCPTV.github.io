@@ -15,11 +15,17 @@ window.addEventListener("load", function () {
   }
 
   function setupButton(element, dest) {
-    if (currPage === dest || dest < 1 || dest > pages.length) {
+    if (currPage === dest) {
+      element.classList.remove("disabled");
+      element.classList.add("current");
+      element.onclick = null;
+    } else if (dest < 1 || dest > pages.length) {
+      element.classList.remove("current");
       element.classList.add("disabled");
       element.onclick = null;
     } else {
       element.classList.remove("disabled");
+      element.classList.remove("current");
       element.onclick = function () {
         const newurl =
           window.location.origin + window.location.pathname + "?page=" + dest;

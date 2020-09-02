@@ -3,6 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: post_list
-title: Episodes
-podcast: Porch Couch TV
+title: Other Pods
+podcast: Other
 ---

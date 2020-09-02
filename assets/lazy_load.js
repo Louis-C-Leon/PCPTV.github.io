@@ -1,21 +1,35 @@
 function loadMedia(article) {
-  const video = article.querySelector(".post-video");
-  const playlist = article.querySelector(".playlist");
+  const iframes = Array.from(article.querySelectorAll("iframe"));
 
-  // Do nothing if we've already set the source
-  const currVidSrc = video.getAttribute("src");
-  const currPlaylistSrc = playlist.getAttribute("src");
-  if (!!currVidSrc && !!currPlaylistSrc) return;
+  iframes.forEach(function (element) {
+    if (!!element.getAttribute("src")) {
+      return;
+    }
+    const data = element.getAttribute("data-lazy-load");
+    let src;
 
-  const vidLink = video.getAttribute("data-lazy-load");
-  const spotURI = playlist.getAttribute("data-lazy-load").split(":");
-  const splitSrc = vidLink.split("/");
-  const vidId = splitSrc[splitSrc.length - 1];
-  const vidSrc = "https://player.vimeo.com/video/" + vidId;
-  const spotSrc =
-    "https://open.spotify.com/embed/" + spotURI[1] + "/" + spotURI[2];
-  video.setAttribute("src", vidSrc);
-  playlist.setAttribute("src", spotSrc);
+    // Construct correct src strings for each media type
+    if (element.classList.contains("vimeo")) {
+      const vidId = data.split("/")[data.split("/").length - 1];
+      src = "https://player.vimeo.com/video/" + vidId;
+    } else if (element.classList.contains("spotify")) {
+      const spotURI = data.split(":");
+      src = "https://open.spotify.com/embed/" + spotURI[1] + "/" + spotURI[2];
+    } else if (element.classList.contains("google-drive")) {
+      const fileId = data.split("/")[data.split("/").length - 2];
+      src =
+        "https://drive.google.com/file/d/" + fileId + "/preview?usp=sharing";
+    } else if (element.classList.contains("youtube")) {
+      const ytId = data.split("/")[data.split("/").length - 1];
+      src = "https://www.youtube.com/embed/" + ytId;
+    } else if (element.classList.contains("soundcloud")) {
+      const split = data.split("=");
+      console.log(data)
+      console.log(split);
+    }
+
+    element.setAttribute("src", src);
+  });
 }
 
 function callback(entries, observer) {

@@ -14,9 +14,10 @@ $base-line-height: 1.5 !default;
 $spacing-unit: 30px !default;
 
 $text-color: #071922 !default;
-$background-color: white !default;
-$background-contrast-color: #cce6f4 !default;
-$brand-color: #ba324f !default;
+$background-color: #eeeeee !default;
+$background-contrast-color: #5c9ead !default;
+$background-contrast-dark: #326273 !default;
+$brand-color: #e39774 !default;
 
 $grey-color: #828282 !default;
 $grey-color-light: lighten($grey-color, 40%) !default;
@@ -34,10 +35,6 @@ $break-three: 400px;
 
 $min-page-width: 300px;
 
-@media (max-width: $break-two) {
-  $base-font-size: 75% !important;
-}
-
 @mixin break($break-size) {
   @media (max-width: $break-size) {
     @content;
@@ -52,6 +49,11 @@ $min-page-width: 300px;
   font-size: $base-font-size * $ratio;
 }
 
+body {
+  @include break($break-three) {
+    $base-font-size: 0.85em;
+  }
+}
 // Import partials.
 @import "minima/base", "minima/layout", "minima/syntax-highlighting",
   "porchcouch/custom-styles";

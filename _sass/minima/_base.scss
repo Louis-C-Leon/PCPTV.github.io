@@ -38,6 +38,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  min-width: $min-page-width;
 }
 
 h1,
@@ -129,13 +130,10 @@ h6 {
 a {
   color: $brand-color;
   text-decoration: none;
-
-  &:visited {
-    color: darken($brand-color, 15%);
-  }
+  transition: color 0.2s;
 
   &:hover {
-    color: $text-color;
+    color: $background-color;
     text-decoration: underline;
   }
 
@@ -207,10 +205,12 @@ pre {
     max-width: wrap-content-width($break-two);
   }
   @include break($break-two) {
+    padding-right: $spacing-unit / 2;
+    padding-left: $spacing-unit / 2;
     max-width: wrap-content-width($break-three);
   }
   @include break($break-three) {
-    max-width: wrap-content-width($min-page-width);
+    max-width: $min-page-width;
   }
 }
 

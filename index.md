@@ -4,6 +4,5 @@
 
 layout: home
 title: Intro Title
-video_url: https://vimeo.com/256942763
 ---
 Intro text. Write whatever you want here. This is the homepage of your site.

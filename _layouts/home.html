@@ -10,15 +10,5 @@ layout: default
   {%- if page.text -%}
     <p>{{ page.text }}</p>
   {%- endif -%}
-  {%- if page.video_url -%} 
-    {%- assign video_id = page.video_url | split: '/' | last -%} 
-    {%- assign iframe_src = "https://player.vimeo.com/video/" | append: video_id -%}
-     <iframe 
-      src={{ iframe_src }}
-      frameborder="0"
-      allow="fullscreen"
-      allowfullscreen
-      class="intro-video"
-    ></iframe>
-  {%- endif -%} 
+  <img alt="homepage image" class="home-splash" src="assets/homepage.jpg" />
 </div>

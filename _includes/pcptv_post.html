@@ -1,5 +1,11 @@
-<article id="post-{{ post | modulo: site.posts_per_page | plus: 1 }}" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="article-border-top"</div>
+{% assign mod = post | modulo: 2 %}
+{% if mod == 1 %}
+  {% assign class="grey" %}
+{% else %}
+  {% assign class="white" %}
+{% endif %}
+<article id="post-{{ post | modulo: site.posts_per_page | plus: 1 }}" class="post h-entry {{ class }}" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="post-background"></div>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">
       {{ curr_post.title | escape }}
@@ -12,14 +18,15 @@
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         {{ curr_post.date | date: date_format }}
       </time>
-      {%- if curr_post.author -%}
-        • 
-        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span class="p-author h-card" itemprop="name">
-            {{ curr_post.author }}
+      {%- if curr_post.authors -%}
+        <span itemprop="authors" itemscope itemtype="http://schema.org/Person">
+          Episode by: 
+          <span class="p-authors" itemprop="author-names">
+            {{ curr_post.authors | join: ', ' }}
           </span>
         </span>
-      {%- endif -%}</p>
+      {%- endif -%}
+    </p>
   </header>
   {% if curr_post.content %}
     <div class="post-content e-content" itemprop="articleBody">
@@ -27,8 +34,6 @@
     </div>
   {% endif %}
     {%- if curr_post.video_url -%} 
-      {%- assign video_id = curr_post.video_url | split: '/' | last -%} 
-      {%- assign iframe_src = "https://player.vimeo.com/video/" | append: video_id -%}
       <div class="responsive-video-wrap">
         <iframe 
           src=""
@@ -36,22 +41,18 @@
           frameborder="0"
           allow="fullscreen"
           allowfullscreen
-          itemprop="videoSrc"
-          class="post-video"
+          class="post-video vimeo"
         ></iframe>
       </div>
     {%- endif -%} 
     {%- if curr_post.spotify_uri -%}
-      {%- assign split = curr_post.spotify_uri | split: ':' -%}
-      {%- assign spotify_src = "https://open.spotify.com/embed/" | append: split[1] | append: "/" | append: split[2] -%}
       <iframe 
         src=""
         data-lazy-load={{ curr_post.spotify_uri }}
-        class="playlist"
+        class="playlist spotify"
         frameborder="0" 
         allowtransparency="true" 
         allow="encrypted-media"
-        itemprop="playlistId"
       ></iframe>
     {%- endif -%}
 </article>

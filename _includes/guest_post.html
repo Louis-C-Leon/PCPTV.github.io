@@ -1,0 +1,86 @@
+{% assign mod = post | modulo: 2 %}
+{% if mod == 1 %}
+  {% assign class="grey" %}
+{% else %}
+  {% assign class="white" %}
+{% endif %}
+<article id="post-{{ post | modulo: site.posts_per_page | plus: 1 }}" class="guest-post h-entry {{ class }}" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="post-background"></div>
+  <header class="post-header">
+    <span class="post-title">
+      <h1 class="p-name" itemprop="name headline">
+        {{ curr_post.title | escape }}
+      </h1>
+      {% if curr_post.podcast.name %}
+        <h1 itemprop="podcast">
+          {{ curr_post.podcast.name }}
+        </h1>
+      {% endif %}
+    </span>
+    <p class="post-meta">
+      <time 
+        class="dt-published" 
+        datetime="{{ curr_post.date | date_to_xmlschema }}" 
+        itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ curr_post.date | date: date_format }}
+      </time>
+      {%- if curr_post.authors -%}
+        <span itemprop="authors" itemscope itemtype="http://schema.org/Person">
+          Episode by: 
+          <span class="p-authors" itemprop="author-names">
+            {{ curr_post.authors | join: ', ' }}
+          </span>
+        </span>
+      {%- endif -%}
+  </header>
+  {% if curr_post.content %}
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ curr_post.content }}
+    </div>
+  {% endif %}
+  {% if curr_post.media %}
+    {% if curr_post.media.type == 'drive' %}
+      <iframe
+        frameborder="0"
+        class="google-drive"
+        data-lazy-load={{ curr_post.media.link }}
+        src=""
+      ></iframe>
+    {% elsif curr_post.media.type == 'spotify' %}
+      <iframe 
+        src=""
+        data-lazy-load={{ curr_post.media.uri }}
+        class="spotify"
+        frameborder="0" 
+        allowtransparency="true" 
+        allow="encrypted-media"
+        itemprop="playlistId"
+      ></iframe>
+    {% elsif curr_post.media.type == 'youtube' %}
+      <div class="responsive-video-wrap">
+        <iframe 
+          src=""
+          data-lazy-load={{ curr_post.media.link }}
+          class="youtube"
+          frameborder="0" 
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+        ></iframe>
+      </div>
+    {% elsif curr_post.media.type == 'vimeo' %}
+      <div class="responsive-video-wrap">
+        <iframe 
+          src=""
+          data-lazy-load={{ curr_post.media.link }}
+          class="vimeo"
+          frameborder="0" 
+          allow="fullscreen"
+          allowfullscreen
+        ></iframe>
+      </div>
+    {% elsif curr_post.media.type == 'soundcloud' or curr_post.media.type == 'bandcamp' %}
+      {{ curr_post.media.code }}
+    {% endif %}
+  {% endif %}
+</article>
