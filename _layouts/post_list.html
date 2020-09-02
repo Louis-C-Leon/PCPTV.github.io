@@ -22,8 +22,7 @@ layout: default
     </h2>
     <div class="post-list">
       {% if num_pages > 1 %}
-      <div class="post-list-nav">
-      <ul class="post-list-nav-buttons">
+      <ul class="post-list-nav">
         <div class="nav-background"></div>
         <li class="post-list-nav-button" id="prev-page">Prev</li>
         {%- for page in (1..num_pages) -%}
