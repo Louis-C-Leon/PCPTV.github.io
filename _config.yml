@@ -30,8 +30,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 posts_per_page: 5
 
 # Build settings
-# plugins:
-  # - jekyll-paginate
+plugins:
+  - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
