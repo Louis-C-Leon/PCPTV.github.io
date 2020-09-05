@@ -1,3 +1,9 @@
+{% assign other_pods = site.posts | where: "podcast.main", false %}
+{% if other_pods.size > 0 %}
+  {% assign show_other_pods = true %}
+{% else %}
+  {% assign show_other_pods = false %}
+{% endif %}
 <header class="site-header" role="banner">
   <div class="wrapper">
     <img class="header-logo" src="/assets/logo.png" />
@@ -6,9 +12,25 @@
 </header>
 <div class="nav-bar">
   <div class="wrapper">
-    <a class="nav-link" href="/">Welcome</a>
-    <a class="nav-link" href="/blog.html">Episodes</a>
-    <a class="nav-link" href="/other_pods.html">Other Pods</a>
-    <a class="nav-link" href="#contact">Contact</a>
+    {% if page.url == "/" %}
+      <a class="nav-link active" href="/">Welcome</a>
+      <a class="nav-link" href="/blog.html">Episodes</a>
+      {% if show_other_pods %}
+        <a class="nav-link" href="/other_pods.html">Other Pods</a>
+      {% endif %}
+      <a class="nav-link" href="#contact">Contact</a>
+    {% elsif page.url == "/blog.html" %}
+      <a class="nav-link" href="/">Welcome</a>
+      <a class="nav-link active" href="/blog.html">Episodes</a>
+      {% if show_other_pods %}
+        <a class="nav-link" href="/other_pods.html">Other Pods</a>
+      {% endif %}
+      <a class="nav-link" href="#contact">Contact</a>
+    {% elsif page.url == "/other_pods.html" %}
+      <a class="nav-link" href="/">Welcome</a>
+      <a class="nav-link" href="/blog.html">Episodes</a>
+      <a class="nav-link active" href="/other_pods.html">Other Pods</a>
+      <a class="nav-link" href="#contact">Contact</a>
+    {% endif %}
   </div>
 </div>

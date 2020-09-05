@@ -186,3 +186,11 @@ article.white .post-background {
   border-radius: 50%;
   margin: $spacing-unit * 2 auto;
 }
+
+.other-pod-banner {
+  background-color: lighten($brand-color, 10%);
+  p {
+    text-decoration: italic;
+    margin: 0px;
+  }
+}

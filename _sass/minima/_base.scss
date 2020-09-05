@@ -41,6 +41,10 @@ body {
   min-width: $min-page-width;
 }
 
+::selection {
+  background-color: $brand-color;
+}
+
 h1,
 h2,
 h3,
@@ -231,7 +235,7 @@ pre {
   width: 16px;
   height: 16px;
   display: inline-block;
-  fill: #{$grey-color};
+  fill: white;
   padding-right: 5px;
   vertical-align: text-top;
 }

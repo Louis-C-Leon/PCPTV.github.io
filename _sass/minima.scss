@@ -1,10 +1,8 @@
 @charset "utf-8";
 
 // Define defaults for each variable.
-
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Mono:ital,wght@0,400;0,600;1,400;1,600&display=swap");
-
-$base-font-family: "Roboto Mono", serif;
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+$base-font-family: "Work Sans", sans-serif;
 $title-font-family: "Anton", sans-serif;
 $base-font-size: 1em !default;
 $base-font-weight: 400 !default;
