@@ -22,7 +22,7 @@ title: Porch Couch TV
 email: porchcouchpodcast@gmail.com
 instagram_username: porchcouchpodcast
 description: >- # this means to ignore newlines until "baseurl:"
-  A place to enjoy, connect with, and contact all members of the Porch Couch Podcast. Don't hesitate to rech out!
+  We hope you enjoy our podcast. Don't hesitate to rech out!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 posts_per_page: 3
