@@ -1,8 +1,8 @@
 # Porch Couch
 
-[Site tour](# Site Tour)
+[Site tour](#site-tour)
 
-[Posting instructions](# Posting instructions)
+[Posting instructions](#posting-instructions)
 
 Porch Couch Podcast TV homepage: [live site here](https://porchcouch.tv)
 
