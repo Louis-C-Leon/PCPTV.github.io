@@ -2,7 +2,7 @@
 
 [Site tour](#site-tour)
 
-[Posting instructions](#posting-instructions)
+[Posting instructions](#quick-guide-to-making-a-post)
 
 Porch Couch Podcast TV homepage: [live site here](https://porchcouch.tv)
 
