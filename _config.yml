@@ -24,7 +24,7 @@ instagram_username: porchcouchpodcast
 description: >- # this means to ignore newlines until "baseurl:"
   TESTING
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://porchcouch.tv" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://porchcouch.tv" # the base hostname & protocol for your site, e.g. http://example.com
 posts_per_page: 3
 
 # Build settings
